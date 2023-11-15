@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class Clientes {
 
+<<<<<<< HEAD
     private String Nombre = "";
     private String Dia = "";
     private int Telefono = 0;
@@ -43,4 +44,31 @@ public class Clientes {
         JOptionPane.showMessageDialog(null, "Se guardo el cliente");
    
 }
+=======
+    public String Nombre = "";
+    private int Telefono = 0;
+    int rangohoras = 0;
+    public String getNombre() {
+        return this.Nombre;
+    }
+
+    public int getTelefono(int nuevoTelefono) {
+        return nuevoTelefono;
+    }
+
+    public void setTelefono(int nuevoTelefono) {
+        String numero = Integer.toString(nuevoTelefono);
+        if (numero.length() < 8 || numero.length() > 8) {
+            JOptionPane.showMessageDialog(null, "Número de teléfono inválido");
+        } else {
+            this.Telefono = nuevoTelefono;
+        }
+    }
+
+    public void guardarCliente(String gNombre, int gTelefono) {
+        this.Nombre = gNombre;
+        this.setTelefono(gTelefono); 
+        JOptionPane.showMessageDialog(null, "Se guardo el cliente");
+    }
+>>>>>>> 66fa84e65ac13959d2ff828ca1772812ec40fae6
 }
