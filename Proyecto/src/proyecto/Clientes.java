@@ -12,46 +12,10 @@ import javax.swing.JOptionPane;
  */
 public class Clientes {
 
-<<<<<<< HEAD
-    private String Nombre = "";
-    private String Dia = "";
-    private int Telefono = 0;
-    private int rangohoras = 0;
-    
-    public String getNombre() {
-        return this.Nombre;
-    }
-    
-    public String getDia() {
-        return this.Dia;
-    }
-
-    public int getTelefono() {
-        return this.Telefono;
-    }
-    
-    public int getHora() {
-        return this.rangohoras;
-    }
-
- 
-
-    public Clientes(String NombreC, int TelefonoC,String DiaC,int HoraC ) {
-        this.Nombre=NombreC;
-        this.Dia=DiaC;
-        this.rangohoras=HoraC;
-        this.Telefono=TelefonoC; 
-        JOptionPane.showMessageDialog(null, "Se guardo el cliente");
-   
-}
-=======
     public String Nombre = "";
     private int Telefono = 0;
     int rangohoras = 0;
-    public String getNombre() {
-        return this.Nombre;
-    }
-
+    
     public int getTelefono(int nuevoTelefono) {
         return nuevoTelefono;
     }
@@ -65,10 +29,7 @@ public class Clientes {
         }
     }
 
-    public void guardarCliente(String gNombre, int gTelefono) {
-        this.Nombre = gNombre;
-        this.setTelefono(gTelefono); 
-        JOptionPane.showMessageDialog(null, "Se guardo el cliente");
+    public Clientes() {
+        
     }
->>>>>>> 66fa84e65ac13959d2ff828ca1772812ec40fae6
 }
