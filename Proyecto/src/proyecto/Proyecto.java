@@ -6,9 +6,13 @@ package proyecto;
 
 import javax.swing.JOptionPane;
 
+// Agregar Fechas(Dia,Mes,Año)
+// Agregar Modulo Eliminar Citas
+
 /**
  *
  * @author Pablo Vega
+ * @author Funnyd
  */
 public class Proyecto {
 
@@ -18,25 +22,32 @@ public class Proyecto {
     public static void main(String[] args) {
         int op = 0;
         Citas cita = new Citas();
-        cita.guardarBarbero();
-        while (op != 3) {
+        
+        while (op != 4) {
             String menu = "Menú Principal"
-                    + "\n1- Agendar Cita"
-                    + "\n2- Consultar Citas"
-                    + "\n3- Salir";
+                    + "\n1- Agregar Barberos"
+                    + "\n2- Agregar Citas"
+                    + "\n3- Consultar Citas"
+                    + "\n4- Salir";
+            
             op = Integer.parseInt(JOptionPane.showInputDialog(menu + "\n Digite la opcion que necesita:"));
             switch (op) {
                 case 1:
-
+                    cita.guardarBarbero();
+                    break;
+                    
+                case 2:
                     cita.AgendarCita();
                     break;
-                case 2:
+                    
+                case 3:
                     String buscarBarbero = JOptionPane.showInputDialog("Digite el nombre del barbero que desea consultar: ");
                     cita.MostrarCitas(buscarBarbero);
-
                     break;
-                case 3:
+                    
+                case 4:
                     break;
+                    
             }
         }
     }

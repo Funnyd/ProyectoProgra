@@ -34,7 +34,11 @@ public class Citas {
         Clientes cliente = new Clientes();
         String Nombre_Barbero = JOptionPane.showInputDialog("Digite el nombre del barbero con el que desea su cita: ");
         for (int i = 0; i < cBarberos.length; i++) {
-            if (cBarberos[i].Nombre_Barbero.equals(Nombre_Barbero)) {
+            if (cBarberos[i] == null) {
+                JOptionPane.showMessageDialog(null, "No ha ingresado ningún barbero");
+                return barbero;
+
+            } else if (cBarberos[i].Nombre_Barbero.equals(Nombre_Barbero)) {
                 barbero = cBarberos[i];
                 cliente.Nombre = JOptionPane.showInputDialog("Digite el nombre del cliente: ");
                 int Telefono = Integer.parseInt(JOptionPane.showInputDialog("Digite el teléfono del Cliente: "));
@@ -53,7 +57,7 @@ public class Citas {
                 for (int j = 0; j < cantidadCitas; j++) {
                     if (citas[j][0].equals(Dia) && Integer.parseInt(citas[j][1]) == horaCita) {
                         JOptionPane.showMessageDialog(null, "Ya existe una cita para el mismo día y hora. Por favor, elija otro horario.");
-                        return barbero; 
+                        return barbero;
                     }
                 }
                 if (horafinal == barbero.Horario_Almuerzo || (horafinal <= 7) || horafinal > 17) {
@@ -67,18 +71,17 @@ public class Citas {
 
                     if (Dia.contains("sabado") || Dia.contains("domingo")) {
                         this.ganancia = 3000 * cantidadhoras * 1.13;
-                        this.ganancia = Math.round(ganancia);
                         JOptionPane.showMessageDialog(null, "La cita tiene un valor de 3000 colones por hora más 13% de IVA");
                         JOptionPane.showMessageDialog(null, "La cita ha sido agendada" + "\nEl costo de la cita es de: " + ganancia);
                     } else {
                         this.ganancia = 2500 * cantidadhoras * 1.13;
-                        this.ganancia = Math.round(ganancia);
                         JOptionPane.showMessageDialog(null, "La cita tiene un valor de 2500 colones más 13% de IVA");
                         JOptionPane.showMessageDialog(null, "La cita ha sido agendada" + "\nEl costo de la cita es de: " + ganancia);
                     }
                     citas[cantidadCitas][5] = String.valueOf(ganancia);
                     cantidadCitas++;
                 }
+                
             }
 
         }
@@ -88,11 +91,14 @@ public class Citas {
 
     public void MostrarCitas(String Nombre_Barbero) {
         for (int i = 0; i < cBarberos.length; i++) {
-            if (cBarberos[i].Nombre_Barbero.equals(Nombre_Barbero)) {
+            if (cBarberos[i] == null) {
+                JOptionPane.showMessageDialog(null, "No ha ingresado ningún barbero");
+                return;
+
+            } else if (cBarberos[i].Nombre_Barbero.equals(Nombre_Barbero)) {
                 String ConsultarDia = JOptionPane.showInputDialog("Digite el día que desea consultar: ");
                 String mensaje = "Citas del día " + ConsultarDia + " para el barbero " + Nombre_Barbero + ":\n";
 
-               
                 boolean[] horasOcupadas = new boolean[18];
                 double gananciaTotal = 0;
                 for (int j = 0; j < cantidadCitas; j++) {
@@ -106,7 +112,7 @@ public class Citas {
                         for (int k = horaCita; k < horaCita + duracionCita; k++) {
                             horasOcupadas[k] = true;
                         }
-                        mensaje += "Hora: " + horaCita + ":00 -" + (horaCita + duracionCita)
+                        mensaje += "Hora: " + horaCita + " - " + (horaCita + duracionCita)
                                 + ", Cliente: " + NombreCliente + ", Teléfono: " + telefonoCliente + "\n";
                     }
                 }
@@ -114,9 +120,9 @@ public class Citas {
                 for (int k = 8; k <= 17; k++) {
                     if (!horasOcupadas[k]) {
                         if (k != cBarberos[i].Horario_Almuerzo) {
-                            mensaje += "Hora: " + k + ":00, VACIO\n";
+                            mensaje += "Hora: " + k + ", VACIO\n";
                         } else {
-                            mensaje += "Hora: " + k + ":00, ALMUERZO\n";
+                            mensaje += "Hora: " + k + ", ALMUERZO\n";
                         }
                     }
                 }

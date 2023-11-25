@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
 public class Clientes {
 
     public String Nombre = "";
-    private int Telefono = 0;
-   
-    
+    private int Telefono = 0;    
     public int getTelefono(int nuevoTelefono) {
         return nuevoTelefono;
     }
