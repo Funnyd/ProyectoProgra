@@ -14,7 +14,7 @@ public class Clientes {
 
     public String Nombre = "";
     private int Telefono = 0;
-    int rangohoras = 0;
+   
     
     public int getTelefono(int nuevoTelefono) {
         return nuevoTelefono;

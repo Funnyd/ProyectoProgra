@@ -67,10 +67,12 @@ public class Citas {
 
                     if (Dia.contains("sabado") || Dia.contains("domingo")) {
                         this.ganancia = 3000 * cantidadhoras * 1.13;
+                        this.ganancia = Math.round(ganancia);
                         JOptionPane.showMessageDialog(null, "La cita tiene un valor de 3000 colones por hora más 13% de IVA");
                         JOptionPane.showMessageDialog(null, "La cita ha sido agendada" + "\nEl costo de la cita es de: " + ganancia);
                     } else {
                         this.ganancia = 2500 * cantidadhoras * 1.13;
+                        this.ganancia = Math.round(ganancia);
                         JOptionPane.showMessageDialog(null, "La cita tiene un valor de 2500 colones más 13% de IVA");
                         JOptionPane.showMessageDialog(null, "La cita ha sido agendada" + "\nEl costo de la cita es de: " + ganancia);
                     }
@@ -104,7 +106,7 @@ public class Citas {
                         for (int k = horaCita; k < horaCita + duracionCita; k++) {
                             horasOcupadas[k] = true;
                         }
-                        mensaje += "Hora: " + horaCita + " - " + (horaCita + duracionCita)
+                        mensaje += "Hora: " + horaCita + ":00 -" + (horaCita + duracionCita)
                                 + ", Cliente: " + NombreCliente + ", Teléfono: " + telefonoCliente + "\n";
                     }
                 }
@@ -112,9 +114,9 @@ public class Citas {
                 for (int k = 8; k <= 17; k++) {
                     if (!horasOcupadas[k]) {
                         if (k != cBarberos[i].Horario_Almuerzo) {
-                            mensaje += "Hora: " + k + ", VACIO\n";
+                            mensaje += "Hora: " + k + ":00, VACIO\n";
                         } else {
-                            mensaje += "Hora: " + k + ", ALMUERZO\n";
+                            mensaje += "Hora: " + k + ":00, ALMUERZO\n";
                         }
                     }
                 }
