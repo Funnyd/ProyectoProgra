@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Pablo Vega
+ * @author Daniel Q aka Funnyd 
  */
 public class Citas {
 
@@ -20,6 +21,8 @@ public class Citas {
     int cantidadCitas = 0;
     public String[][] citas = new String[10][6];
 
+    
+    //Funcion para Guardar Barbero
     public void guardarBarbero() {
         for (int x = 0; x < cBarberos.length; x++) {
             Barberos barbero = new Barberos();
@@ -29,10 +32,13 @@ public class Citas {
         }
     }
 
+    //Funcion para Agendar Citas
     public Barberos AgendarCita() {
         Barberos barbero = new Barberos();
         Clientes cliente = new Clientes();
         Calendario calendario = new Calendario();
+        
+        //Agendar Barbero
         String Nombre_Barbero = JOptionPane.showInputDialog("Digite el nombre del barbero con el que desea su cita: ");
         int indiceBarberos = -1;
         for (int i = 0; i < cBarberos.length; i++) {
@@ -48,6 +54,8 @@ public class Citas {
         barbero = cBarberos[indiceBarberos];
         cliente.Nombre = JOptionPane.showInputDialog("Digite el nombre del cliente: ");
         int Telefono = Integer.parseInt(JOptionPane.showInputDialog("Digite el teléfono del Cliente: "));
+        
+        //Llamada a Calendario
         calendario.FechaCita();
         if (calendario.fechaCita == null) {
             return barbero;
@@ -65,12 +73,14 @@ public class Citas {
         if (horafinal == barbero.Horario_Almuerzo || (horafinal <= 7) || horafinal > 17) {
             JOptionPane.showMessageDialog(null, "Hora no disponible.");
         } else {
+            
+            //Guardado de cita 
             citas[cantidadCitas][0] = String.valueOf(calendario.fechaCita);
             citas[cantidadCitas][1] = String.valueOf(horaCita);
             citas[cantidadCitas][2] = String.valueOf(cantidadhoras);
             citas[cantidadCitas][3] = String.valueOf(cliente.Nombre);
             citas[cantidadCitas][4] = String.valueOf(cliente.getTelefono(Telefono));
-            if (calendario.fechaCita.contains("sabado") || calendario.fechaCita.contains("domingo")) {
+            if (calendario.fechaCita.contains("Sabado") || calendario.fechaCita.contains("Domingo")) {
                 this.ganancia = 3000 * cantidadhoras * 1.13;
                 JOptionPane.showMessageDialog(null, "La cita tiene un valor de 3000 colones por hora más 13% de IVA");
                 JOptionPane.showMessageDialog(null, "La fecha de su cita es: " + calendario.fechaCita);
@@ -86,7 +96,8 @@ public class Citas {
         }
         return barbero;
     }
-
+    
+    //Metodo para consultar citas
     public void MostrarCitas(String Nombre_Barbero) {
         int indiceBarberos = -1;
         for (int i = 0; i < cBarberos.length; i++) {

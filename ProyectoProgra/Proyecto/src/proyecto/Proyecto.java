@@ -31,6 +31,8 @@ public class Proyecto {
 
             op = Integer.parseInt(JOptionPane.showInputDialog(menu + "\n Digite la opcion que necesita:"));
             switch (op) {
+
+                
                 case 1:
                     cita.guardarBarbero();
                     break;
