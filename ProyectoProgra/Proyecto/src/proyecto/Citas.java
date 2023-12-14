@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Pablo Vega
- * @author Daniel Q aka Funnyd 
+ * @author Daniel Q aka Funnyd
  */
 public class Citas {
 
@@ -21,7 +21,6 @@ public class Citas {
     int cantidadCitas = 0;
     public String[][] citas = new String[10][6];
 
-    
     //Funcion para Guardar Barbero
     public void guardarBarbero() {
         for (int x = 0; x < cBarberos.length; x++) {
@@ -37,7 +36,7 @@ public class Citas {
         Barberos barbero = new Barberos();
         Clientes cliente = new Clientes();
         Calendario calendario = new Calendario();
-        
+
         //Agendar Barbero
         String Nombre_Barbero = JOptionPane.showInputDialog("Digite el nombre del barbero con el que desea su cita: ");
         int indiceBarberos = -1;
@@ -54,7 +53,8 @@ public class Citas {
         barbero = cBarberos[indiceBarberos];
         cliente.Nombre = JOptionPane.showInputDialog("Digite el nombre del cliente: ");
         int Telefono = Integer.parseInt(JOptionPane.showInputDialog("Digite el teléfono del Cliente: "));
-        
+         cliente.setTelefono(Telefono);
+
         //Llamada a Calendario
         calendario.FechaCita();
         if (calendario.fechaCita == null) {
@@ -73,7 +73,7 @@ public class Citas {
         if (horafinal == barbero.Horario_Almuerzo || (horafinal <= 7) || horafinal > 17) {
             JOptionPane.showMessageDialog(null, "Hora no disponible.");
         } else {
-            
+
             //Guardado de cita 
             citas[cantidadCitas][0] = String.valueOf(calendario.fechaCita);
             citas[cantidadCitas][1] = String.valueOf(horaCita);
@@ -96,7 +96,7 @@ public class Citas {
         }
         return barbero;
     }
-    
+
     //Metodo para consultar citas
     public void MostrarCitas(String Nombre_Barbero) {
         int indiceBarberos = -1;
@@ -134,8 +134,7 @@ public class Citas {
 
             for (int k = 8; k <= 17; k++) {
                 if (!horasOcupadas[k]) {
-                    if (k != cBarberos[indiceBarberos
-                            ].Horario_Almuerzo) {
+                    if (k != cBarberos[indiceBarberos].Horario_Almuerzo) {
                         mensaje += "Hora: " + k + ":00, VACIO\n";
                     } else {
                         mensaje += "Hora: " + k + ":00, ALMUERZO\n";
@@ -145,6 +144,63 @@ public class Citas {
 
             mensaje += "\nGanancia total del día: " + Math.round(gananciaTotal);
             JOptionPane.showMessageDialog(null, mensaje);
+        }
+    }
+
+    //Metodo para eliminar citas
+    public void eliminarCitas(String Nombre_Barbero) {
+        //Validar barbero
+        int horaCita = 0;
+        int indiceBarberos = -1;
+        for (int i = 0; i < cBarberos.length; i++) {
+            if (cBarberos[i].Nombre_Barbero.equals(Nombre_Barbero)) {
+                indiceBarberos = i;
+                break;
+            }
+        }
+        // Validar barbero 2
+        if (indiceBarberos == -1) {
+            JOptionPane.showMessageDialog(null, "No ha ingresado ningún barbero o el barbero no existe");
+            return;
+        } else if (cBarberos[indiceBarberos].Nombre_Barbero.equals(Nombre_Barbero)) {
+            //Validar cliente
+            String consultarCliente = JOptionPane.showInputDialog("De cual cliente desea consultar?");
+            for (int x = 0; x < cantidadCitas; x++) {
+                if (citas[x][3].equals(consultarCliente)) {
+                    JOptionPane.showMessageDialog(null, "Entro");
+                    String consultarDia = JOptionPane.showInputDialog("Digite la fecha de la cita: "
+                    + "\n             (dia/ fecha/ mes/ año)");
+            String mensaje = "Citas de  " + consultarCliente + " para el " + consultarDia + "/n";
+            for (int j = 0; j < cantidadCitas; j++) {
+                if (citas[j][0].equals(consultarDia) && citas[j][3].equals(consultarCliente)) {
+                    horaCita = Integer.parseInt(citas[j][1]);
+                    mensaje = "Hora: " + horaCita + "/n";
+                }
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
+            String Hora = JOptionPane.showInputDialog("Digite la hora que desea eliminar: ");
+            for (int e = 0; e < cantidadCitas; e++) {
+                if (citas[e][1].equals(Hora)) {
+                    citas[e][0] = "";
+                    citas[e][1] = "";
+                    citas[e][2] = "";
+                    citas[e][3] = "";
+                    citas[e][4] = "";
+                    JOptionPane.showMessageDialog(null, "La cita ha sido eliminada");
+                    break;
+                }else{
+                    JOptionPane.showMessageDialog(null, "No existe ninguna cita para esa hora");
+                }
+            }
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "No ha ingresado ningún cliente o el cliente no existe");
+                    return;
+
+                }
+            }
+            
+
         }
     }
 }

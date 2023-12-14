@@ -22,12 +22,14 @@ public class Proyecto {
         int op = 0;
         Citas cita = new Citas();
 
-        while (op != 4) {
+        
+        while (op != 5) {
             String menu = "Menú Principal"
                     + "\n1- Agregar Barberos"
                     + "\n2- Agendar Cita"
                     + "\n3- Consultar Citas"
-                    + "\n4- Salir";
+                    + "\n4- Eliminar Citas"
+                    + "\n5- Salir";
 
             op = Integer.parseInt(JOptionPane.showInputDialog(menu + "\n Digite la opcion que necesita:"));
             switch (op) {
@@ -47,6 +49,12 @@ public class Proyecto {
                     break;
 
                 case 4:
+                    buscarBarbero = JOptionPane.showInputDialog("Digite el barbero al que se le va a eliminar la cita: ");
+                    cita.eliminarCitas(buscarBarbero);
+                    break;
+                    
+                    
+                case 5:
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion incorrecta",
@@ -54,4 +62,5 @@ public class Proyecto {
             }
         }
     }
+        
 }

@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
  */
 public class Clientes {
 
+    Proyecto main = new Proyecto();
     public String Nombre = "";
-    private int Telefono = 0;    
+    private int Telefono = 0;
+
     public int getTelefono(int nuevoTelefono) {
         return nuevoTelefono;
     }
@@ -22,12 +24,13 @@ public class Clientes {
         String numero = Integer.toString(nuevoTelefono);
         if (numero.length() < 8 || numero.length() > 8) {
             JOptionPane.showMessageDialog(null, "Número de teléfono inválido");
+            
         } else {
             this.Telefono = nuevoTelefono;
         }
     }
 
     public Clientes() {
-        
+
     }
 }
